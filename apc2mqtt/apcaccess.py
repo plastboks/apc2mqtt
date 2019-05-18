@@ -66,6 +66,17 @@ def parse(raw_status, strip_units=False):
     return OrderedDict([[x.strip() for x in x.split(SEP, 1)] for x in lines])
 
 
+def convert_values(dict):
+    """
+    try to convert values to floats
+    """
+    for key, value in dict.items():
+        try:
+            dict[key] = float(value)
+        except ValueError:
+            continue
+
+
 def strip_units_from_lines(lines):
     """
     Removes all units from the ends of the lines.
